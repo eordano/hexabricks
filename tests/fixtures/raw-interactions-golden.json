@@ -1,0 +1,102 @@
+{
+  "initial": {
+    "messages": "9a91dddae19b521438bf4486c0d3553a690b2f2e2bcaab7a8b5ada2ccc31dddb",
+    "state": "b1cf99ffd953867c04726596ac679b0a7e0ee36cc96f4c0eacb29ae51726e174"
+  },
+  "welcome": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "99bcddac0ab643dd77296f030e8c3abec6a48a03af88e64f93f4a4d097282e66"
+  },
+  "dismiss-welcome": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "b1cf99ffd953867c04726596ac679b0a7e0ee36cc96f4c0eacb29ae51726e174"
+  },
+  "height": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "ea3a91db2254eb5bfe185b953a01ceb4c8e8289dcec9baf6fc9c277d012b51e0"
+  },
+  "remember-rotation": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "6608003ada5dabc6fabb65ccad999a028a37c7a93447918236ae5fd8e922e373"
+  },
+  "lock-for-place": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "6608003ada5dabc6fabb65ccad999a028a37c7a93447918236ae5fd8e922e373"
+  },
+  "aim-place": {
+    "messages": "8efd12011831829707722ea5040b20e48646866615bc6de807b6d5809f0c450e",
+    "state": "63b38cb5c78b633a098067bfe1d9208cd26516b38a6f48fb7308ae23c6f31805"
+  },
+  "place": {
+    "messages": "42104f5148e1c43a0e17e66c2d3e48f8d816018a033fa67f91dfad57baae61cc",
+    "state": "60bc1c9d248fbf76e8478df7d319b059b0e7ae564f69d7e701fad742bc85eba3"
+  },
+  "unlock-for-paint": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "60bc1c9d248fbf76e8478df7d319b059b0e7ae564f69d7e701fad742bc85eba3"
+  },
+  "select-color": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "dae8a1d1dde3096190a691b33f8608ef1ffe9555c7467cc399b71c2294382ef8"
+  },
+  "select-paint": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "f0eb007cee5d895dc449cb2168d09b98be659ea4f2db8c3c46590782dcc1a5e1"
+  },
+  "lock-for-paint": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "f0eb007cee5d895dc449cb2168d09b98be659ea4f2db8c3c46590782dcc1a5e1"
+  },
+  "aim-paint": {
+    "messages": "181998535f96766e928c06c5c68c38260fbd0cdab099777f992ce78ba5ea2ec9",
+    "state": "b6557a01f4a11cb1a7f29161dae22b2751fe43ffe00cff20836a914974608312"
+  },
+  "paint": {
+    "messages": "3dee0e2128c5a4775463770c1d99b34e7c0fdf5c429f12a16d243458d807f221",
+    "state": "3f2ca5894a6036de7b06ec6719371baeb6c38214f507493000c296fa86561fe9"
+  },
+  "unlock-for-history": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "3f2ca5894a6036de7b06ec6719371baeb6c38214f507493000c296fa86561fe9"
+  },
+  "undo-paint": {
+    "messages": "adcefb130ee866f3fd4f82f5bac59ba7eee8461f45353d5def1ff65210041599",
+    "state": "b6557a01f4a11cb1a7f29161dae22b2751fe43ffe00cff20836a914974608312"
+  },
+  "redo-paint": {
+    "messages": "3dee0e2128c5a4775463770c1d99b34e7c0fdf5c429f12a16d243458d807f221",
+    "state": "3f2ca5894a6036de7b06ec6719371baeb6c38214f507493000c296fa86561fe9"
+  },
+  "select-delete": {
+    "messages": "e8859a8e5caeecc9b134fe451c6a29ccb47dc7c4ffc6eda3d969f3b32b089395",
+    "state": "1127655746df7695e801223d2e9c2451b5316045b19bf26e81f7f049e2472c73"
+  },
+  "lock-for-delete": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "1127655746df7695e801223d2e9c2451b5316045b19bf26e81f7f049e2472c73"
+  },
+  "aim-delete": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "1127655746df7695e801223d2e9c2451b5316045b19bf26e81f7f049e2472c73"
+  },
+  "delete": {
+    "messages": "c26e81b315f98e882eb298fe74dd6d7580272b11a8cf964750c6ba35c5556823",
+    "state": "42306ae209acbffc2a6f1fc123ce7bfb61ca8db320610730a38e4eb8c551648f"
+  },
+  "unlock-after-delete": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "42306ae209acbffc2a6f1fc123ce7bfb61ca8db320610730a38e4eb8c551648f"
+  },
+  "undo-delete": {
+    "messages": "c7e2a54e318e00b3cb429ab0484f601d352c786011c3880c22780679d9478fc5",
+    "state": "9dad0534abf5c740bb85678cf4461d1f61deb9571ccec790fec05c844bab8afb"
+  },
+  "open-builders": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "167016531b2bf43149d270319c0e7b4555ed11e6f29735904e9a294730230bb6"
+  },
+  "submit-invite": {
+    "messages": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "state": "b603462bbbb106a39b730c420077fc1fe4bf875be8bfb15bddfb40bdd99879bf"
+  }
+}
