@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#11181e">
+  <meta name="description" content="Build together! And visit us at Decentraland's 2,12 parcel in genesis city">
+  <title>Hexabricks</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./app.css">
+</head>
+<body>
+  <main id="app">
+    <canvas id="world" tabindex="0" aria-label="Shared brick world. Drag to move, scroll to zoom, click to place. On touch, tap to aim then press the plus button." aria-describedby="keyboard-guide"></canvas>
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Hexabricks home" title="Hexabricks">
+        <svg viewBox="0 0 36 40" aria-hidden="true"><path d="M18 2 34 11v18l-16 9L2 29V11Z"/><path d="m2 11 16 9 16-9M18 20v18"/></svg>
+        <span class="sr-only">Hexabricks</span>
+      </a>
+      <div class="top-actions">
+        <div id="connection" class="connection" role="status" data-state="connecting"><button id="connection-details" class="icon-button" aria-label="Connection details" aria-describedby="connection-text" aria-expanded="false" aria-controls="help-panel" title="Connecting…"><span id="connection-icon" data-icon="cloud-sync"></span><span id="pending-count" class="pending-count" aria-hidden="true" hidden></span></button><span id="connection-text" class="sr-only">Connecting…</span></div>
+        <button id="help-toggle" class="icon-button" aria-label="Help and controls" aria-expanded="false" aria-controls="help-panel" data-icon="help"></button>
+      </div>
+    </header>
+    <nav class="tools" aria-label="Building tools">
+      <button class="tool selected" data-mode="place" aria-label="Build" title="Build (B)" aria-pressed="true"><span data-icon="brick"></span></button>
+      <button class="tool" data-mode="paint" aria-label="Paint" title="Paint (P)" aria-pressed="false"><span data-icon="paint"></span></button>
+      <button class="tool" data-mode="delete" aria-label="Remove" title="Remove (X)" aria-pressed="false"><span data-icon="erase"></span></button>
+      <span class="tool-divider"></span>
+      <button id="undo" class="icon-button" aria-label="Undo (Ctrl or Command Z)" data-icon="undo" disabled></button>
+      <button id="redo" class="icon-button" aria-label="Redo (Ctrl or Command Shift Z)" data-icon="redo" disabled></button>
+    </nav>
+    <div class="world-info" title="Loading the world"><span data-icon="brick"></span><span id="brick-total" aria-hidden="true">…</span><span id="brick-count" class="sr-only">Loading the world</span></div>
+    <aside class="camera-tools" aria-label="Camera controls">
+      <button id="home" class="icon-button" aria-label="Center on the build" data-icon="home"></button>
+      <button id="zoom-in" class="icon-button" aria-label="Zoom in" data-icon="plus"></button>
+      <button id="zoom-out" class="icon-button" aria-label="Zoom out" data-icon="minus"></button>
+      <span class="camera-divider"></span>
+      <button id="orbit" class="icon-button" aria-label="Orbit camera when dragging" aria-pressed="false" data-icon="orbit"></button>
+      <button id="top-view" class="icon-button" aria-label="Toggle top-down view" aria-pressed="false" data-icon="top"></button>
+    </aside>
+    <section id="help-panel" class="help-panel" aria-labelledby="help-title" hidden>
+      <h2 id="help-title">Laying out the Bricks</h2>
+      <p>Same scene as Decentraland at 2,12</p>
+      <dl>
+        <dt>Touch</dt><dd>Tap to aim, then press <span class="inline-icon" data-icon="plus"></span><span class="sr-only">the plus button</span> to place. Drag to move; pinch to zoom. Use <span class="inline-icon" data-icon="orbit"></span><span class="sr-only">the orbit button</span> to orbit.</dd>
+        <dt>Mouse</dt><dd>Click to build. Drag to move, right-drag to orbit, scroll to zoom.</dd>
+        <dt>Stack</dt><dd>Aim at a brick’s top to stack; aim at its edge to build beside it.</dd>
+        <dt>Keyboard</dt><dd id="keyboard-guide">Arrows aim · WASD move · R rotate · E place · 3 next shape · F next tool · Ctrl/⌘ Z undo · Shift Ctrl/⌘ Z redo.</dd>
+      </dl>
+      <a href="http://decentraland.org/play/?position=2,12" id="help-close" class="text-button">Visit 2,12 on Decentraland <span data-icon="arrow"></span></a>
+    </section>
+    <div id="toast" class="toast" role="status" hidden></div>
+    <section class="build-tray" aria-label="Brick palette">
+      <div class="sr-only"><strong id="selection-name">Hexagon</strong><span id="selection-detail">Terracotta · 1× high</span></div>
+      <div id="shapes" class="shapes" role="group" aria-label="Brick shape"></div>
+      <div id="colors" class="colors" role="group" aria-label="Brick color"></div>
+      <div class="build-row"><div id="heights" class="heights" role="group" aria-label="Brick height"></div><button id="rotate" class="rotate-button" aria-label="Rotate brick" title="Rotate brick (R)"><span data-icon="rotate"></span><span class="rotation-label" id="rotation-label">0°</span></button><button id="apply" class="apply-button" aria-labelledby="apply-label" aria-describedby="aim-status" title="Place brick (E)" disabled><span id="apply-icon" data-icon="plus"></span><span id="apply-label" class="sr-only">Place brick</span></button></div>
+      <p id="aim-status" class="sr-only" role="status">Connecting to the shared world…</p>
+    </section>
+    <section id="error-panel" class="error-panel" aria-labelledby="error-title" hidden><span data-icon="brick"></span><h1 id="error-title">Let’s get you building.</h1><p id="error-message"></p><button id="reload" class="apply-button">Try again</button><a href="https://decentraland.org/play/?position=2%2C12">Open the Decentraland scene</a></section>
+    <div id="loading" class="loading" role="status"><span class="loading-brick" data-icon="brick"></span><p class="sr-only">Opening your building table…</p></div>
+    <noscript><p class="error-panel">Enable JavaScript to open the shared brick world.</p></noscript>
+  </main>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
