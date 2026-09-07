@@ -1,0 +1,46 @@
+{
+  "cleanJoin": {
+    "baked": [[1, 3, 0, 0, 0, 0, 2, "0xaaa", 10, 2]],
+    "snapshot": {
+      "t": "s",
+      "b": [[1, 3, 0, 0, 0, 0, 2, "0xaaa", 10, 2]],
+      "d": [],
+      "i": []
+    },
+    "outboundTags": ["h"]
+  },
+  "storageRecovery": {
+    "baked": [
+      [1, 3, 0, 0, 0, 0, 2, "0xaaa", 10, 2],
+      [2, 3, 3, 3, 0, 0, 4, "0xbbb", 20, 2],
+      [3, 3, 6, 6, 0, 0, 6, "0xccc", 30, 2]
+    ],
+    "snapshot": {
+      "t": "s",
+      "b": [[1, 3, 0, 0, 0, 0, 2, "0xaaa", 10, 2]],
+      "d": [3],
+      "i": []
+    },
+    "recoveredIds": [2]
+  },
+  "offlineJournal": {
+    "lay": [9, 3, 9, 9, 0, 0, 1, "0xaaa", 90, 2],
+    "paint": { "id": 4, "color": 7 },
+    "delete": 5,
+    "snapshot": {
+      "t": "s",
+      "b": [[4, 3, 3, 3, 0, 0, 0, "0xddd", 40, 2]],
+      "d": [],
+      "i": []
+    },
+    "replayedTags": ["l", "p", "d"]
+  },
+  "canonicalEdgeState": {
+    "records": [
+      [2, 3, 3, 3, 0, 0, 7, "0xbbb", 20, 2],
+      [9, 3, 9, 9, 0, 0, 1, "0xaaa", 90, 2]
+    ],
+    "deleted": [1, 5],
+    "sha256": "8595792025803ecdd39185f9add01ed749f11e407da44a0d4e9bbdf2f3641b2d"
+  }
+}
