@@ -112,28 +112,6 @@ test('real generated snapshot is valid and hydration never reuses an entity id',
   assert.equal(raw.componentEntries(protocol.IDS.BrickData).length, 0, 'main.crdt carries no scene-only metadata')
 })
 
-test('baked bricks hydrate metadata from the bundled table without sending it', async () => {
-  const snapshot = new Uint8Array(fs.readFileSync(path.resolve(__dirname, '../main.crdt')))
-  const baked = await import('../src/baked-bricks.ts')
-  const local = await createHarness({ state: [snapshot] })
-  try {
-    await local.tick()
-    const bricks = local.component(protocol.IDS.BrickData)
-    assert.equal(bricks.size, baked.BAKED_BRICKS.length)
-    baked.BAKED_BRICKS.forEach((row, index) => {
-      const data = bricks.get(baked.BAKED_FIRST_ENTITY + index)
-      assert.ok(data, `entity for row ${index}`)
-      assert.deepEqual(
-        [data.brickId, data.defIdx, data.a0, data.b0, data.ys0, data.rotK, data.color, data.thick, data.by, data.at],
-        [row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], baked.BAKED_BY[row[8]], row[9]]
-      )
-    })
-    assert.equal(messages(local.sent).filter((message) => message.component === protocol.IDS.BrickData).length, 0)
-  } finally {
-    local.restore()
-  }
-})
-
 test('CRDT parser accepts the Godot explorer delete-component header and stays aligned', () => {
   const words = (...values) => {
     const out = new Uint8Array(values.length * 4)
@@ -518,4 +496,30 @@ test('all supported interactions retain the verified SDK effects', async () => {
     state: createHash('sha256').update(encoded(value.state)).digest('hex')
   }]))
   assert.deepEqual(actual, golden)
+})
+
+test('baked bricks hydrate metadata from the bundled table without sending it', async () => {
+  const snapshot = new Uint8Array(fs.readFileSync(path.resolve(__dirname, '../main.crdt')))
+  const baked = await import('../src/baked-bricks.ts')
+  // A second harness re-requires the bundle, which replaces the shared harness's
+  // globals; keep this last and hand them back when done.
+  const shared = { raw: global.__HEXABRICKS_RAW__ }
+  const local = await createHarness({ state: [snapshot] })
+  try {
+    await local.tick()
+    const bricks = local.component(protocol.IDS.BrickData)
+    assert.equal(bricks.size, baked.BAKED_BRICKS.length)
+    baked.BAKED_BRICKS.forEach((row, index) => {
+      const data = bricks.get(baked.BAKED_FIRST_ENTITY + index)
+      assert.ok(data, `entity for row ${index}`)
+      assert.deepEqual(
+        [data.brickId, data.defIdx, data.a0, data.b0, data.ys0, data.rotK, data.color, data.thick, data.by, data.at],
+        [row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], baked.BAKED_BY[row[8]], row[9]]
+      )
+    })
+    assert.equal(messages(local.sent).filter((message) => message.component === protocol.IDS.BrickData).length, 0)
+  } finally {
+    local.restore()
+    global.__HEXABRICKS_RAW__ = shared.raw
+  }
 })

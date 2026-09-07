@@ -179,7 +179,6 @@ export class Renderer {
     if (this.dead) return
     const { width, height } = this.canvas.getBoundingClientRect()
     this.camera.width = Math.max(1, width); this.camera.height = Math.max(1, height)
-    // Bound fill cost on high-density phones; no continuous rendering while idle.
     const ratio = Math.min(devicePixelRatio || 1, 1.75, Math.sqrt(3_000_000 / (width * height)))
     const w = Math.max(1, Math.min(this.device.limits.maxTextureDimension2D, Math.round(width * ratio)))
     const h = Math.max(1, Math.min(this.device.limits.maxTextureDimension2D, Math.round(height * ratio)))

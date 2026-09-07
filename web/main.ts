@@ -44,7 +44,7 @@ let aimX = innerWidth / 2, aimY = innerHeight * 0.43
 let refreshFrame = 0, timer = 0, toastTimer = 0, lastApply = 0
 let pendingStatus = ''
 function storageGet(key: string) { try { return localStorage.getItem(key) } catch { return null } }
-function storageSet(key: string, value: string) { try { localStorage.setItem(key, value) } catch { /* Private mode still works for the current session. */ } }
+function storageSet(key: string, value: string) { try { localStorage.setItem(key, value) } catch {} }
 const actor = storageGet('hexabricks.browser.actor') || `web-${[...crypto.getRandomValues(new Uint32Array(4))].map(n => n.toString(16).padStart(8, '0')).join('')}`
 storageSet('hexabricks.browser.actor', actor)
 
@@ -263,7 +263,7 @@ async function start() {
   if (location.protocol === 'https:' && server.protocol !== 'wss:') throw new Error('Use a secure wss:// server address on this HTTPS page.')
   relay = createGenesisRelay({
     address: () => actor,
-    seed: () => [], // A browser never offers cached/example geometry to the live service.
+    seed: () => [],
     snapshot: records => {
       world.snapshot(records)
       const first = !state.ready; state.ready = true

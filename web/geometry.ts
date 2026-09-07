@@ -73,7 +73,6 @@ export function pick(origin: Vec3, direction: Vec3, records: Iterable<BrickWireR
     const relative = sub(origin, [anchor.x, base, anchor.z])
     const localOrigin: Vec3 = [relative[0] * c + relative[2] * s, relative[1] / height, -relative[0] * s + relative[2] * c]
     const localDir: Vec3 = [direction[0] * c + direction[2] * s, direction[1] / height, -direction[0] * s + direction[2] * c]
-    // Cheap bounds test before the exact shared polygon triangles.
     let near = 0, far = best?.distance ?? Infinity
     for (let axis = 0; axis < 3; axis++) {
       const lo = axis === 1 ? 0 : -3, hi = axis === 1 ? 1 : 3

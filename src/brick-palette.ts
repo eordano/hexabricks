@@ -1,4 +1,3 @@
-// Shared by the Decentraland asset generator and the native browser renderer.
 export const BRICK_COLORS = [
   { name: 'terracotta', base: '#C96542', glow: '#E8DCB8' },
   { name: 'crimson', base: '#A32638', glow: '#EFE3B0' },

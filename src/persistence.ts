@@ -119,8 +119,11 @@ function ownOrHost(owner: string): boolean {
 function hydrateBaked(): void {
   BAKED_BRICKS.forEach((row, index) => {
     const entity = (BAKED_FIRST_ENTITY + index) as Entity
-    if (BrickData.has(entity) || !GltfContainer.has(entity)) return
     const [brickId, defIdx, a0, b0, ys0, rotK, color, thick, byIndex, at] = row
+    // Only claim entities that really are this row's baked brick: without renderer state
+    // (previews, tests) the scene's own models occupy these entity numbers.
+    if (BrickData.has(entity) || !GltfContainer.has(entity) ||
+        GltfContainer.get(entity).src !== `models/brick-${defIdx}-${color}.glb`) return
     BrickData.create(entity, { brickId, defIdx, a0, b0, ys0, rotK, color, thick, by: BAKED_BY[byIndex] ?? '', at })
   })
 }
