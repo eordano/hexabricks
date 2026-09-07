@@ -581,9 +581,11 @@ export function setupGame() {
   const RESET_HOLD_S = 0.4
   let fHeld = false
   let fTime = 0
-  const cameraEvent = (action: number, event: number) =>
-    inputSystem.isTriggered(action, event, engine.CameraEntity)
-  const down = (action: number) => cameraEvent(action, PointerEventType.PET_DOWN)
+  // Unity, Bevy, and Godot all append global presses to the root entity, never the camera.
+  // A press the UI consumed is not a world action.
+  const worldEvent = (action: number, event: number) =>
+    inputSystem.isTriggered(action, event, engine.RootEntity) && !inputSystem.isConsumed(action, event)
+  const down = (action: number) => worldEvent(action, PointerEventType.PET_DOWN)
   engine.addSystem((dt) => {
     if (down(InputAction.IA_POINTER)) executeAction()
     if (down(InputAction.IA_PRIMARY)) executeAction()
@@ -596,7 +598,7 @@ export function setupGame() {
       if (fTime >= RESET_HOLD_S) {
         fHeld = false
         setAction(0)
-      } else if (cameraEvent(InputAction.IA_SECONDARY, PointerEventType.PET_UP)) {
+      } else if (worldEvent(InputAction.IA_SECONDARY, PointerEventType.PET_UP)) {
         fHeld = false
         setAction(state.action + 1)
       } else if (!inputSystem.isPressed(InputAction.IA_SECONDARY)) {

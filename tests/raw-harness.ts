@@ -122,11 +122,16 @@ async function createHarness(options = {}) {
     }
   }
   async function clickEntity(entity) {
-    const timestamp = eventTimestamp++
-    await deliver(writeOne(entity, protocol.IDS.PointerEventsResult, {
-      button: 0, state: 1, timestamp, tickNumber: timestamp,
-      hit: undefined, analog: undefined
-    }, true))
+    // Explorers append the press to the consuming UI entity and a global copy to the root entity.
+    const writer = new protocol.CrdtWriter()
+    const codec = codecs.get(protocol.IDS.PointerEventsResult)
+    for (const target of [entity, 0]) {
+      const timestamp = eventTimestamp++
+      writer.put(target, protocol.IDS.PointerEventsResult, timestamp, codec.encode({
+        button: 0, state: 1, timestamp, tickNumber: timestamp, hit: undefined, analog: undefined
+      }), protocol.APPEND_VALUE)
+    }
+    await deliver(writer.take())
   }
   async function clickLabel(label) {
     const entity = clickableForLabel(label)

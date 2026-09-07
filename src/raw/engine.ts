@@ -210,6 +210,10 @@ export function createRawEngine() {
   const inputSystem = {
     isTriggered: (action: number, eventType: number, entity?: Entity): boolean =>
       findCommand(action, eventType, entity) !== null,
+    // Explorers also route a press to the UI or scene entity that consumed it; that copy
+    // arrives in the same frame as the root copy.
+    isConsumed: (action: number, eventType: number): boolean =>
+      frameCommands.some((item) => item.entity > 2 && item.command.button === action && item.command.state === eventType),
     isPressed: (action: number): boolean => buttons.get(action)?.state === 1
   }
 

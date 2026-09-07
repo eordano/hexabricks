@@ -40,7 +40,8 @@ function deliverTo(h, entity, component, value, append = false) {
 const setPointerLock = (value, h = harness) => deliverTo(h, 2, protocol.IDS.PointerLock, { isPointerLocked: value })
 function command(button, state = 1, h = harness) {
   const timestamp = h.nextEventTimestamp()
-  return deliverTo(h, 2, protocol.IDS.PointerEventsResult, {
+  // Global presses arrive on the root entity in every explorer.
+  return deliverTo(h, 0, protocol.IDS.PointerEventsResult, {
     button, state, timestamp, tickNumber: timestamp, hit: undefined, analog: undefined
   }, true)
 }
