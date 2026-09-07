@@ -1,0 +1,38 @@
+{
+  "name": "hexabricks",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "gen-assets": "node scripts/gen-assets.ts",
+    "gen-crdt": "node scripts/gen-scene-crdt.ts",
+    "validate:snapshot": "node scripts/validate-scene-snapshot.ts",
+    "typecheck": "tsc --pretty false",
+    "build": "npm run gen-assets && node scripts/build-scene.ts",
+    "start": "npm run typecheck && npm run build && dcl-one-sdk start --skip-build --ignoreComposite --no-watch --no-mcp --offline-comms --no-host",
+    "test": "node --test tests/*.test.ts && npm run service:test",
+    "deploy": "npm run typecheck && npm run build && dcl-one-sdk deploy --skip-build",
+    "service:start": "npm --prefix service start",
+    "service:test": "npm --prefix service test",
+    "web:start": "node scripts/build-web.mjs --serve",
+    "web:build": "npm run web:typecheck && node scripts/build-web.mjs",
+    "web:typecheck": "tsc -p web/tsconfig.json --pretty false",
+    "web:test": "node --test web/tests/*.test.ts",
+    "web:test:browser": "playwright test -c web/playwright.config.ts"
+  },
+  "devDependencies": {
+    "@dcl/ecs": "7.26.0",
+    "@dcl/js-runtime": "7.26.0",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^24.13.3",
+    "@types/ws": "^8.18.1",
+    "@webgpu/types": "^0.1.72",
+    "esbuild": "0.27.2",
+    "protobufjs": "7.6.6",
+    "typescript": "^5.9.2",
+    "ws": "8.18.3"
+  },
+  "engines": {
+    "node": ">=24",
+    "npm": ">=11"
+  }
+}
