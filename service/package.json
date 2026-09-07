@@ -1,0 +1,15 @@
+{
+  "name": "hexabricks-genesis-peer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.ts",
+    "test": "node --test *.test.ts"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "dependencies": {
+    "ws": "^8.18.3"
+  }
+}
